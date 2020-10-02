@@ -2,8 +2,11 @@ const chalk = require("chalk");
 const clear = require("clear");
 const figlet = require("figlet");
 const files = require("./lib/files");
+const github = require("./lib/github");
 
-// Startup
+
+
+/********  STARTUP ********/
 
 clear();
 
@@ -19,3 +22,17 @@ if (files.directoryExists(".git")) {
 }
 
 /* Propmpt user for Github credentials (muahahahaah!!) */
+/* Check for already-existing OAuth token, if one not present. Call Github for new token with users supplied credentials*/
+
+const run = async () => {
+  let token = github.getStoredGithubToken();
+  if ( !token ) {
+    token = await github.getPersonalAccessToken();
+  }
+  console.log("Github OAuth token: ", token);
+}
+
+
+
+
+run();
