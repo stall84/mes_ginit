@@ -38,7 +38,7 @@ const getGithubToken = async () => {
   token = await github.getPersonalAccessToken();
 
   return token;
-}
+};
 
 const run = async () => {                                           // async function with our module functions run sequentially inside
   try {                                                             // try block
